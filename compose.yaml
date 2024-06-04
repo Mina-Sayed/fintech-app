@@ -1,0 +1,20 @@
+# docker-compose.yml
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+
+      # Mounts the current directory to the '/usr/src/app' directory inside the container.
+      # This allows the container to access and use the files and directories in the current directory.
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - MONGO_URI=mongodb://mongo:dByPzKxkIOkNZLjiVoMUBmuNpDpqknvc@viaduct.proxy.rlwy.net:56205
+      - JWT_SECRET=sasasdas
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
